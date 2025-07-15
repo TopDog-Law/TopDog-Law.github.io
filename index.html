@@ -1,1 +1,256 @@
-<h1>Hello</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Looker Studio Home Dashboard</title>
+     <!-- Tailwind CSS CDN -->
+     <script src="https://cdn.tailwindcss.com"></script>
+     <style>
+          /* Custom styles for subtle visual appeal */
+          body {
+               font-family: 'Inter', sans-serif;
+               /* Using Inter font as requested */
+               background-color: #f8fafc;
+               /* Light gray background */
+               color: #334155;
+               /* Darker gray text */
+          }
+
+          .card {
+               background-color: #ffffff;
+               /* White card background */
+               box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+               /* Subtle shadow */
+               border-radius: 0.75rem;
+               /* Rounded corners */
+               padding: 1.5rem;
+               margin-bottom: 1.5rem;
+          }
+
+          .category-title {
+               color: #1e293b;
+               /* Darker title color */
+               font-weight: 700;
+               /* Bold */
+               margin-bottom: 1rem;
+               padding-bottom: 0.5rem;
+               border-bottom: 1px solid #e2e8f0;
+               /* Subtle separator */
+          }
+
+          .subcategory-title {
+               color: #475569;
+               /* Slightly lighter subcategory title */
+               font-weight: 600;
+               margin-top: 1rem;
+               margin-bottom: 0.75rem;
+          }
+
+          .link-item {
+               display: block;
+               padding: 0.5rem 0.75rem;
+               border-radius: 0.5rem;
+               transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+               color: #3b82f6;
+               /* Blue for links */
+               text-decoration: none;
+          }
+
+          .link-item:hover {
+               background-color: #e0f2fe;
+               /* Light blue on hover */
+               color: #1d4ed8;
+               /* Darker blue on hover */
+               text-decoration: none;
+               /* Remove underline on hover */
+          }
+
+          .nested-list {
+               margin-left: 1.5rem;
+               /* Indent for nested lists */
+          }
+     </style>
+</head>
+
+<body class="p-6 md:p-10">
+     <div class="max-w-6xl mx-auto">
+          <h1 class="text-4xl font-extrabold text-center text-gray-800 mb-8 rounded-lg p-4 bg-white shadow-md">
+               Looker Studio Dashboard Hub
+          </h1>
+
+          <!-- Executive Section -->
+          <div class="card">
+               <h2 class="text-2xl category-title">Executive</h2>
+               <ul class="space-y-2">
+                    <li><a href="https://lookerstudio.google.com/reporting/your-report-id-1" target="_blank"
+                              class="link-item">Overall Spend</a></li>
+                    <li><a href="https://lookerstudio.google.com/reporting/your-report-id-2" target="_blank"
+                              class="link-item">2023 - 2025</a></li>
+                    <li><a href="https://lookerstudio.google.com/reporting/your-report-id-3" target="_blank"
+                              class="link-item">CMO | MoM</a></li>
+               </ul>
+          </div>
+
+          <!-- Investment & Strategy Section -->
+          <div class="card">
+               <h2 class="text-2xl category-title">Investment & Strategy</h2>
+               <ul class="space-y-2">
+                    <li><a href="https://lookerstudio.google.com/reporting/your-report-id-4" target="_blank"
+                              class="link-item">CISO Review</a></li>
+                    <li><a href="https://lookerstudio.google.com/reporting/your-report-id-5" target="_blank"
+                              class="link-item">CISO Review - Kushal</a></li>
+               </ul>
+          </div>
+
+          <!-- Finance Section -->
+          <div class="card">
+               <h2 class="text-2xl category-title">Finance</h2>
+               <div class="nested-list">
+                    <h3 class="text-xl subcategory-title">Finance</h3>
+                    <ul class="space-y-2">
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-6" target="_blank"
+                                   class="link-item">CFO Review | Actuals</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-7" target="_blank"
+                                   class="link-item">Cash Flow Modeling</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-8" target="_blank"
+                                   class="link-item">Anton</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-9" target="_blank"
+                                   class="link-item">Docket Valuation</a></li>
+                    </ul>
+               </div>
+          </div>
+
+          <!-- Marketing Section -->
+          <div class="card">
+               <h2 class="text-2xl category-title">Marketing</h2>
+               <div class="nested-list">
+                    <h3 class="text-xl subcategory-title">Performance</h3>
+                    <ul class="space-y-2">
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-10" target="_blank"
+                                   class="link-item">NICHE - Aggregate</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-11" target="_blank"
+                                   class="link-item">Comparison | Organic vs Internal vs Hybrid</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-12" target="_blank"
+                                   class="link-item">Sales Funnel | Lead Status Analysis</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-13" target="_blank"
+                                   class="link-item">GMB Review</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-14" target="_blank"
+                                   class="link-item">LSA</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-15" target="_blank"
+                                   class="link-item">Reduce CPLR ($) | Revenue Capture</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-16" target="_blank"
+                                   class="link-item">LeadForm vs. Traditional</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-17" target="_blank"
+                                   class="link-item">Birth Injury</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-18" target="_blank"
+                                   class="link-item">MedMal</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-19" target="_blank"
+                                   class="link-item">Sex Abuse</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-20" target="_blank"
+                                   class="link-item">Nursing Home Neglect</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-21" target="_blank"
+                                   class="link-item">Hybrid - Meta</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-22" target="_blank"
+                                   class="link-item">Internal - Meta - English</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-23" target="_blank"
+                                   class="link-item">Internal - Meta - Español</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-24" target="_blank"
+                                   class="link-item">LGT - TikTok - ENGLISH</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-25" target="_blank"
+                                   class="link-item">LGT | META - SPANISH</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-26" target="_blank"
+                                   class="link-item">TDL | Niche</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-27" target="_blank"
+                                   class="link-item">BAD Marketing</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-28" target="_blank"
+                                   class="link-item">Internal | Day+Hour Analysis</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-29" target="_blank"
+                                   class="link-item">Lawsuits.com</a></li>
+                    </ul>
+               </div>
+               <div class="nested-list mt-6">
+                    <h3 class="text-xl subcategory-title">Traditional</h3>
+                    <ul class="space-y-2">
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-30" target="_blank"
+                                   class="link-item">Radio Stations</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-31" target="_blank"
+                                   class="link-item">Radio Analysis</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-32" target="_blank"
+                                   class="link-item">Social Analysis (Exclude Paid)</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-33" target="_blank"
+                                   class="link-item">Country Radio Spend</a></li>
+                    </ul>
+               </div>
+          </div>
+
+          <!-- Operations Section -->
+          <div class="card">
+               <h2 class="text-2xl category-title">Operations</h2>
+               <div class="nested-list">
+                    <h3 class="text-xl subcategory-title">Ex</h3>
+                    <ul class="space-y-2">
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-34" target="_blank"
+                                   class="link-item">Catastrophic Analysis</a></li>
+                    </ul>
+               </div>
+               <div class="nested-list mt-6">
+                    <h3 class="text-xl subcategory-title">Workforce</h3>
+                    <ul class="space-y-2">
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-35" target="_blank"
+                                   class="link-item">Outbound Dialer</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-36" target="_blank"
+                                   class="link-item">AWS | Call Center Forecasting</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-37" target="_blank"
+                                   class="link-item">WFM Dashboard</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-38" target="_blank"
+                                   class="link-item">Outbound Call Time (Min)</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-39" target="_blank"
+                                   class="link-item">Contact% | Revenue Capture</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-40" target="_blank"
+                                   class="link-item">Inbound Analysis</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-41" target="_blank"
+                                   class="link-item">Webform Analysis</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-42" target="_blank"
+                                   class="link-item">Call Center Analysis</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-43" target="_blank"
+                                   class="link-item">Success Track</a></li>
+                    </ul>
+               </div>
+               <div class="nested-list mt-6">
+                    <h3 class="text-xl subcategory-title">OpEx</h3>
+                    <ul class="space-y-2">
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-44" target="_blank"
+                                   class="link-item">Inbound Call vs. Webform</a></li>
+                    </ul>
+               </div>
+          </div>
+
+          <!-- B2B Section -->
+          <div class="card">
+               <h2 class="text-2xl category-title">B2B</h2>
+               <div class="nested-list">
+                    <h3 class="text-xl subcategory-title">Account Management</h3>
+                    <ul class="space-y-2">
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-45" target="_blank"
+                                   class="link-item">Monetized Rate</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-46" target="_blank"
+                                   class="link-item">City Analysis</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-47" target="_blank"
+                                   class="link-item">COR% | Revenue Capture</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-48" target="_blank"
+                                   class="link-item">Reroute Analysis | Revenue Capture</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-49" target="_blank"
+                                   class="link-item">Live Transfer Analysis</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-50" target="_blank"
+                                   class="link-item">Compare Partners</a></li>
+                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-51" target="_blank"
+                                   class="link-item">Active Inventory</a></li>
+                    </ul>
+               </div>
+          </div>
+     </div>
+</body>
+
+</html>
