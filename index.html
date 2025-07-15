@@ -4,45 +4,161 @@
 <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Looker Studio Home Dashboard</title>
+     <title>TopDog Law Dashboard Hub</title>
      <!-- Tailwind CSS CDN -->
      <script src="https://cdn.tailwindcss.com"></script>
      <style>
           /* Custom styles for subtle visual appeal */
           body {
                font-family: 'Inter', sans-serif;
-               /* Using Inter font as requested */
                background-color: #f8fafc;
-               /* Light gray background */
                color: #334155;
-               /* Darker gray text */
+               display: flex;
+               /* Use flexbox for main layout */
+               height: 100vh;
+               /* Full viewport height */
+               overflow: hidden;
+               /* Prevent main body scroll, content will scroll within panels */
           }
 
+          /* Side panel specific styles */
+          .side-panel {
+               width: 280px;
+               /* Fixed width for the side panel */
+               background-color: #ffffff;
+               box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+               /* Shadow to separate from main content */
+               padding: 1.5rem;
+               overflow-y: auto;
+               /* Enable scrolling for the navigation links */
+               flex-shrink: 0;
+               /* Prevent side panel from shrinking */
+          }
+
+          /* Main content area styles */
+          .main-content {
+               flex-grow: 1;
+               /* Allow main content to take remaining space */
+               display: flex;
+               flex-direction: column;
+               /* Stack tabs and iframe area vertically */
+               background-color: #e2e8f0;
+               /* Light gray for content background */
+          }
+
+          /* Tab header styles */
+          .tab-headers-container {
+               display: flex;
+               flex-shrink: 0;
+               /* Prevent tab headers from shrinking */
+               background-color: #f8fafc;
+               border-bottom: 1px solid #cbd5e1;
+               /* Subtle separator */
+               overflow-x: auto;
+               /* Enable horizontal scrolling for many tabs */
+               padding: 0.5rem 1rem;
+               gap: 0.5rem;
+               /* Space between tabs */
+          }
+
+          .tab-header {
+               padding: 0.75rem 1.25rem;
+               border-radius: 0.5rem 0.5rem 0 0;
+               /* Rounded top corners */
+               cursor: pointer;
+               background-color: #e2e8f0;
+               color: #475569;
+               font-weight: 500;
+               transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+               white-space: nowrap;
+               /* Prevent tab titles from wrapping */
+               display: flex;
+               align-items: center;
+               border: 1px solid transparent;
+               /* For consistent height */
+               border-bottom: none;
+          }
+
+          .tab-header:hover {
+               background-color: #dbeafe;
+               /* Lighter blue on hover */
+               color: #1d4ed8;
+          }
+
+          .tab-header.active {
+               background-color: #ffffff;
+               color: #1e293b;
+               border-color: #cbd5e1;
+               border-bottom-color: #ffffff;
+               /* Create "active" tab look */
+               position: relative;
+               z-index: 10;
+               /* Bring active tab to front */
+          }
+
+          .tab-close-button {
+               margin-left: 0.75rem;
+               background: none;
+               border: none;
+               color: #94a3b8;
+               font-size: 0.875rem;
+               cursor: pointer;
+               transition: color 0.2s ease-in-out;
+          }
+
+          .tab-close-button:hover {
+               color: #ef4444;
+               /* Red on hover */
+          }
+
+          /* Iframe container styles */
+          .iframe-container {
+               flex-grow: 1;
+               /* Allow iframe container to fill remaining space */
+               position: relative;
+               /* For absolute positioning of iframes */
+               background-color: #ffffff;
+               overflow: hidden;
+               /* Hide scrollbars if iframe content is smaller */
+          }
+
+          .iframe-content {
+               position: absolute;
+               top: 0;
+               left: 0;
+               width: 100%;
+               height: 100%;
+               border: none;
+               visibility: hidden;
+               /* Hidden by default */
+               opacity: 0;
+               transition: opacity 0.3s ease-in-out;
+          }
+
+          .iframe-content.active {
+               visibility: visible;
+               opacity: 1;
+          }
+
+          /* Existing styles from previous version */
           .card {
                background-color: #ffffff;
-               /* White card background */
                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-               /* Subtle shadow */
                border-radius: 0.75rem;
-               /* Rounded corners */
                padding: 1.5rem;
                margin-bottom: 1.5rem;
           }
 
           .category-title {
                color: #1e293b;
-               /* Darker title color */
                font-weight: 700;
-               /* Bold */
                margin-bottom: 1rem;
                padding-bottom: 0.5rem;
                border-bottom: 1px solid #e2e8f0;
-               /* Subtle separator */
           }
 
           .subcategory-title {
                color: #475569;
-               /* Slightly lighter subcategory title */
                font-weight: 600;
                margin-top: 1rem;
                margin-bottom: 0.75rem;
@@ -54,41 +170,40 @@
                border-radius: 0.5rem;
                transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
                color: #3b82f6;
-               /* Blue for links */
                text-decoration: none;
           }
 
           .link-item:hover {
                background-color: #e0f2fe;
-               /* Light blue on hover */
                color: #1d4ed8;
-               /* Darker blue on hover */
                text-decoration: none;
-               /* Remove underline on hover */
           }
 
           .nested-list {
                margin-left: 1.5rem;
-               /* Indent for nested lists */
           }
      </style>
 </head>
 
-<body class="p-6 md:p-10">
-     <div class="max-w-6xl mx-auto">
-          <h1 class="text-4xl font-extrabold text-center text-gray-800 mb-8 rounded-lg p-4 bg-white shadow-md">
-               Looker Studio Dashboard Hub
+<body>
+     <!-- Side Panel for Navigation -->
+     <aside class="side-panel">
+          <h1 class="text-3xl font-extrabold text-center text-gray-800 mb-8 rounded-lg p-2 bg-white shadow-sm">
+               TopDog Law
           </h1>
 
           <!-- Executive Section -->
           <div class="card">
                <h2 class="text-2xl category-title">Executive</h2>
                <ul class="space-y-2">
-                    <li><a href="https://lookerstudio.google.com/reporting/your-report-id-1" target="_blank"
+                    <li><a href="#"
+                              data-url="https://lookerstudio.google.com/reporting/8b23ea0f-900a-4441-9d5f-a6733acde51a"
                               class="link-item">Overall Spend</a></li>
-                    <li><a href="https://lookerstudio.google.com/reporting/your-report-id-2" target="_blank"
+                    <li><a href="#"
+                              data-url="https://lookerstudio.google.com/reporting/9831d7d8-0a74-4992-8f56-bdea332e4be8"
                               class="link-item">2023 - 2025</a></li>
-                    <li><a href="https://lookerstudio.google.com/reporting/your-report-id-3" target="_blank"
+                    <li><a href="#"
+                              data-url="https://lookerstudio.google.com/reporting/ba91dacd-e62e-4838-b119-ab69fe9f30e9"
                               class="link-item">CMO | MoM</a></li>
                </ul>
           </div>
@@ -97,10 +212,8 @@
           <div class="card">
                <h2 class="text-2xl category-title">Investment & Strategy</h2>
                <ul class="space-y-2">
-                    <li><a href="https://lookerstudio.google.com/reporting/your-report-id-4" target="_blank"
+                    <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-4"
                               class="link-item">CISO Review</a></li>
-                    <li><a href="https://lookerstudio.google.com/reporting/your-report-id-5" target="_blank"
-                              class="link-item">CISO Review - Kushal</a></li>
                </ul>
           </div>
 
@@ -110,14 +223,26 @@
                <div class="nested-list">
                     <h3 class="text-xl subcategory-title">Finance</h3>
                     <ul class="space-y-2">
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-6" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-6"
                                    class="link-item">CFO Review | Actuals</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-7" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-7"
                                    class="link-item">Cash Flow Modeling</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-8" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-8"
                                    class="link-item">Anton</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-9" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-9"
                                    class="link-item">Docket Valuation</a></li>
+                    </ul>
+               </div>
+               <div class="nested-list">
+                    <h3 class="text-xl subcategory-title">Recruiting</h3>
+                    <ul class="space-y-2">
+                         <!-- Add recruiting links here -->
+                    </ul>
+               </div>
+               <div class="nested-list">
+                    <h3 class="text-xl subcategory-title">People Operations</h3>
+                    <ul class="space-y-2">
+                         <!-- Add people operations links here -->
                     </ul>
                </div>
           </div>
@@ -128,59 +253,71 @@
                <div class="nested-list">
                     <h3 class="text-xl subcategory-title">Performance</h3>
                     <ul class="space-y-2">
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-10" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-10"
                                    class="link-item">NICHE - Aggregate</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-11" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-11"
                                    class="link-item">Comparison | Organic vs Internal vs Hybrid</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-12" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-12"
                                    class="link-item">Sales Funnel | Lead Status Analysis</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-13" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-13"
                                    class="link-item">GMB Review</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-14" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-14"
                                    class="link-item">LSA</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-15" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-15"
                                    class="link-item">Reduce CPLR ($) | Revenue Capture</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-16" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-16"
                                    class="link-item">LeadForm vs. Traditional</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-17" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-17"
                                    class="link-item">Birth Injury</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-18" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-18"
                                    class="link-item">MedMal</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-19" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-19"
                                    class="link-item">Sex Abuse</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-20" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-20"
                                    class="link-item">Nursing Home Neglect</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-21" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-21"
                                    class="link-item">Hybrid - Meta</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-22" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-22"
                                    class="link-item">Internal - Meta - English</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-23" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-23"
                                    class="link-item">Internal - Meta - Español</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-24" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-24"
                                    class="link-item">LGT - TikTok - ENGLISH</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-25" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-25"
                                    class="link-item">LGT | META - SPANISH</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-26" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-26"
                                    class="link-item">TDL | Niche</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-27" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-27"
                                    class="link-item">BAD Marketing</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-28" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-28"
                                    class="link-item">Internal | Day+Hour Analysis</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-29" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-29"
                                    class="link-item">Lawsuits.com</a></li>
                     </ul>
                </div>
                <div class="nested-list mt-6">
                     <h3 class="text-xl subcategory-title">Traditional</h3>
                     <ul class="space-y-2">
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-30" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-30"
                                    class="link-item">Radio Stations</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-31" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-31"
                                    class="link-item">Radio Analysis</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-32" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-32"
                                    class="link-item">Social Analysis (Exclude Paid)</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-33" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-33"
                                    class="link-item">Country Radio Spend</a></li>
+                    </ul>
+               </div>
+               <div class="nested-list">
+                    <h3 class="text-xl subcategory-title">Creative</h3>
+                    <ul class="space-y-2">
+                         <!-- Add creative links here -->
+                    </ul>
+               </div>
+               <div class="nested-list">
+                    <h3 class="text-xl subcategory-title">Decision Science</h3>
+                    <ul class="space-y-2">
+                         <!-- Add decision science links here -->
                     </ul>
                </div>
           </div>
@@ -189,40 +326,58 @@
           <div class="card">
                <h2 class="text-2xl category-title">Operations</h2>
                <div class="nested-list">
-                    <h3 class="text-xl subcategory-title">Ex</h3>
+                    <h3 class="text-xl subcategory-title">Excellance</h3>
                     <ul class="space-y-2">
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-34" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-34"
                                    class="link-item">Catastrophic Analysis</a></li>
                     </ul>
                </div>
                <div class="nested-list mt-6">
                     <h3 class="text-xl subcategory-title">Workforce</h3>
                     <ul class="space-y-2">
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-35" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-35"
                                    class="link-item">Outbound Dialer</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-36" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-36"
                                    class="link-item">AWS | Call Center Forecasting</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-37" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-37"
                                    class="link-item">WFM Dashboard</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-38" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-38"
                                    class="link-item">Outbound Call Time (Min)</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-39" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-39"
                                    class="link-item">Contact% | Revenue Capture</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-40" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-40"
                                    class="link-item">Inbound Analysis</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-41" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-41"
                                    class="link-item">Webform Analysis</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-42" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-42"
                                    class="link-item">Call Center Analysis</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-43" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-43"
                                    class="link-item">Success Track</a></li>
                     </ul>
                </div>
                <div class="nested-list mt-6">
                     <h3 class="text-xl subcategory-title">OpEx</h3>
                     <ul class="space-y-2">
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-44" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-44"
                                    class="link-item">Inbound Call vs. Webform</a></li>
+                    </ul>
+               </div>
+               <div class="nested-list">
+                    <h3 class="text-xl subcategory-title">QA</h3>
+                    <ul class="space-y-2">
+                         <!-- Add QA links here -->
+                    </ul>
+               </div>
+               <div class="nested-list">
+                    <h3 class="text-xl subcategory-title">Intake</h3>
+                    <ul class="space-y-2">
+                         <!-- Add Intake links here -->
+                    </ul>
+               </div>
+               <div class="nested-list">
+                    <h3 class="text-xl subcategory-title">Training</h3>
+                    <ul class="space-y-2">
+                         <!-- Add Training links here -->
                     </ul>
                </div>
           </div>
@@ -233,24 +388,146 @@
                <div class="nested-list">
                     <h3 class="text-xl subcategory-title">Account Management</h3>
                     <ul class="space-y-2">
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-45" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-45"
                                    class="link-item">Monetized Rate</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-46" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-46"
                                    class="link-item">City Analysis</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-47" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-47"
                                    class="link-item">COR% | Revenue Capture</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-48" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-48"
                                    class="link-item">Reroute Analysis | Revenue Capture</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-49" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-49"
                                    class="link-item">Live Transfer Analysis</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-50" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-50"
                                    class="link-item">Compare Partners</a></li>
-                         <li><a href="https://lookerstudio.google.com/reporting/your-report-id-51" target="_blank"
+                         <li><a href="#" data-url="https://lookerstudio.google.com/reporting/your-report-id-51"
                                    class="link-item">Active Inventory</a></li>
                     </ul>
                </div>
+               <div class="nested-list">
+                    <h3 class="text-xl subcategory-title">Sales</h3>
+                    <ul class="space-y-2">
+                         <!-- Add Sales links here -->
+                    </ul>
+               </div>
           </div>
-     </div>
+     </aside>
+
+     <!-- Main Content Area with Tabs and Iframes -->
+     <main class="main-content">
+          <div id="tab-headers-container" class="tab-headers-container">
+               <!-- Tabs will be dynamically added here by JavaScript -->
+          </div>
+          <div id="iframe-container" class="iframe-container">
+               <!-- Iframes will be dynamically added here by JavaScript -->
+          </div>
+     </main>
+
+     <script>
+          document.addEventListener('DOMContentLoaded', () => {
+               const tabHeadersContainer = document.getElementById('tab-headers-container');
+               const iframeContainer = document.getElementById('iframe-container');
+               const navLinks = document.querySelectorAll('.link-item');
+               let activeTabId = null;
+
+               // Function to generate a unique ID from a URL
+               function getTabIdFromUrl(url) {
+                    // Simple hash-like ID for unique tab identification
+                    return 'tab-' + btoa(url).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
+               }
+
+               // Function to open a report in a new tab or activate an existing one
+               function openReport(url, title) {
+                    const tabId = getTabIdFromUrl(url);
+
+                    // Check if tab already exists
+                    let existingTabHeader = document.getElementById(`header-${tabId}`);
+                    let existingIframe = document.getElementById(`iframe-${tabId}`);
+
+                    if (existingTabHeader && existingIframe) {
+                         // If tab exists, just activate it
+                         activateTab(tabId);
+                    } else {
+                         // Create new tab header
+                         const tabHeader = document.createElement('button');
+                         tabHeader.id = `header-${tabId}`;
+                         tabHeader.className = 'tab-header';
+                         tabHeader.innerHTML = `
+                        <span>${title}</span>
+                        <button class="tab-close-button" data-tab-id="${tabId}">&times;</button>
+                    `;
+                         tabHeader.onclick = () => activateTab(tabId);
+                         tabHeadersContainer.appendChild(tabHeader);
+
+                         // Create new iframe
+                         const iframe = document.createElement('iframe');
+                         iframe.id = `iframe-${tabId}`;
+                         iframe.className = 'iframe-content';
+                         iframe.src = url;
+                         iframeContainer.appendChild(iframe);
+
+                         // Add close button functionality
+                         tabHeader.querySelector('.tab-close-button').onclick = (e) => {
+                              e.stopPropagation(); // Prevent activating tab when closing
+                              closeTab(tabId);
+                         };
+
+                         activateTab(tabId);
+                    }
+               }
+
+               // Function to activate a specific tab
+               function activateTab(tabId) {
+                    // Deactivate all tabs and iframes
+                    document.querySelectorAll('.tab-header').forEach(header => header.classList.remove('active'));
+                    document.querySelectorAll('.iframe-content').forEach(iframe => iframe.classList.remove('active'));
+
+                    // Activate the selected tab and iframe
+                    const selectedTabHeader = document.getElementById(`header-${tabId}`);
+                    const selectedIframe = document.getElementById(`iframe-${tabId}`);
+
+                    if (selectedTabHeader && selectedIframe) {
+                         selectedTabHeader.classList.add('active');
+                         selectedIframe.classList.add('active');
+                         activeTabId = tabId;
+                    }
+               }
+
+               // Function to close a tab
+               function closeTab(tabIdToClose) {
+                    const headerToClose = document.getElementById(`header-${tabIdToClose}`);
+                    const iframeToClose = document.getElementById(`iframe-${tabIdToClose}`);
+
+                    if (headerToClose) headerToClose.remove();
+                    if (iframeToClose) iframeToClose.remove();
+
+                    // If the closed tab was the active one, activate another tab
+                    if (activeTabId === tabIdToClose) {
+                         const remainingHeaders = tabHeadersContainer.querySelectorAll('.tab-header');
+                         if (remainingHeaders.length > 0) {
+                              // Activate the first remaining tab
+                              activateTab(remainingHeaders[0].id.replace('header-', ''));
+                         } else {
+                              activeTabId = null; // No active tab left
+                         }
+                    }
+               }
+
+               // Add event listeners to all navigation links
+               navLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                         e.preventDefault(); // Prevent default link behavior
+                         const url = link.dataset.url; // Get URL from data-url attribute
+                         const title = link.textContent; // Get link text as tab title
+                         openReport(url, title);
+                    });
+               });
+
+               // Optionally, open a default "Welcome" tab on load
+               // You can replace this with your actual first dashboard or remove it
+               openReport('https://www.google.com/search?q=Welcome+to+TopDog+Law+Dashboards', 'Welcome'); // Example welcome page
+          });
+     </script>
 </body>
 
 </html>
